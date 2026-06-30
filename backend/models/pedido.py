@@ -1,10 +1,10 @@
 class Pedido:
     
-    def __init__(self, id = None, nome_cliente = "", musica = "", observação = "", status = "Pendente", data = None):
+    def __init__(self, id = None, nome_cliente = "", musica = "", observacao = "", status = "Pendente", data = None):
         self.id = id
         self.nome_cliente = nome_cliente
         self.musica = musica
-        self.observação = observação
+        self.observacao = observacao
         self.status = status
         self.data = data
     

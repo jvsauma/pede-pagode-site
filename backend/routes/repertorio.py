@@ -16,5 +16,5 @@ def adicionar_like(musica_id):
 
 
 @repertorio_bp.post("/dislike/<int:musica_id>")
-def adicionar_like(musica_id):
+def adicionar_dislike(musica_id):
     return controller.adicionar_dislike(musica_id)
