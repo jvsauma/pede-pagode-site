@@ -1,6 +1,6 @@
 from backend.database.connection import get_connection
 
-# from backend.models.musica import Musica
+from backend.models.musica import Musica
 
 class MusicaService:
 
