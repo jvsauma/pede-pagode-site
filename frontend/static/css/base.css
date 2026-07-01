@@ -1,0 +1,25 @@
+.nav-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #784a12;
+}
+
+.nav-links{
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-links li{
+    margin-right: 30px;
+    list-style: none;
+}
+
+.nav-container h3{
+    color: white;
+}
+
+.nav-links li a{
+    color : white;
+    text-decoration: none;
+}
