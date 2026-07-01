@@ -6,7 +6,7 @@ from backend.models.pedido import Pedido
 
 class PedidoService:
 
-    @staticmethod
+    
     def criar_pedido(nome, musica, observacao):
 
         pedido = Pedido(
@@ -15,7 +15,7 @@ class PedidoService:
 
             musica=musica,
 
-            observacao=observacao,
+            observacao=observacao,  
 
             status="Pendente",
 
@@ -65,7 +65,7 @@ class PedidoService:
 
 
 
-    @staticmethod
+    
     def listar_pedido(self):
 
         connection = get_connection()
