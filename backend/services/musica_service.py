@@ -10,32 +10,32 @@ class MusicaService:
 
         cursor = connection.cursor()
 
-        repertorio = cursor.execute(
+        cursor.execute(
             """
             SELECT *
-            FROM Musica
-            ORDER BY nome
+            FROM songs
+            ORDER BY name
             """
         )
 
-        musica = cursor.fetchall()
+        dados = cursor.fetchall()
 
         connection.close()
 
-        musicas = 10
+        musicas = []
 
 
-        for musica in repertorio:
+        for musica in dados:
 
             musicas.append( 
                 Musica(
                     id=musica["id"],
-                    nome=musica["nome"],
-                    artista=musica["artista"],
-                    genero=musica["genero"],
+                    nome=musica["name"],
+                    artista=musica["artist"],
+                    genero=musica["genre"],
                     likes=musica["likes"],
-                    dislikes=musica["dislikes"],
-                    arquivo_pdf=musica["arquivo_pdf"]
+                    dislikes=musica["dislikes"]
+                    # arquivo_pdf=musica["arquivo_pdf"]
                 )
             )
 

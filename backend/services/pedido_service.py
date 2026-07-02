@@ -29,7 +29,7 @@ class PedidoService:
 
         cursor.execute("""
 
-            INSERT INTO pedidos(
+            INSERT INTO song_request(
 
                 nome_cliente,
                 musica,
@@ -75,8 +75,8 @@ class PedidoService:
         cursor.execute("""
 
             SELECT *
-            FROM Pedido
-            ORDER BY data ASC
+            FROM song_request
+            ORDER BY created_at ASC
 
         """)
 
@@ -90,15 +90,15 @@ class PedidoService:
 
                 id=row["id"],
 
-                nome_cliente=row["nome_cliente"],
+                nome_cliente=row["client_name"],
 
-                musica=row["musica"],
+                musica=row["song_name"],
 
-                observacao=row["observacao"],
+                observacao=row["observation"],
 
                 status=row["status"],
 
-                data=row["data"]
+                data=row["created_at"]
 
             )
 
