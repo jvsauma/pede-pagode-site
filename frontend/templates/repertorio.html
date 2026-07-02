@@ -1,1 +1,31 @@
-<h1>OLA MUNDO</h1>
+{% extends "base.html" %}
+
+{% block content %}
+
+  <h1>Repertorio</h1>
+
+  <div class="repertorio-container">
+
+    {% if repertorio|length > 0 %}
+
+        {% for musica in repertorio %}
+
+          <div class="repertorio-card">
+
+            <h3>Musica : {{ musica.nome }}</h3>
+            <p>Artista : {{ musica.artista }}</p>
+            <p>Genero : {{ musica.genero }}</p>
+
+          </div>
+        {% endfor %}
+
+
+
+    {% else %}
+      <p>Não há músicas cadastradas no repertório.</p>
+    {% endif %}
+
+
+  </div>
+  
+{% endblock %}
