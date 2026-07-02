@@ -7,7 +7,7 @@ from backend.models.pedido import Pedido
 class PedidoService:
 
     
-    def criar_pedido(nome, musica, observacao):
+    def criar_pedido(self, nome, musica, observacao):
 
         pedido = Pedido(
 
@@ -31,11 +31,11 @@ class PedidoService:
 
             INSERT INTO song_request(
 
-                nome_cliente,
-                musica,
-                observacao,
+                client_name,
+                song_name,
+                observation,
                 status,
-                data
+                created_at
 
             )
 

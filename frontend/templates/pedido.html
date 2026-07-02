@@ -3,5 +3,31 @@
 {% block content %}
 
   <h1>Peça seu pagode</h1>
+
+<!--Mensagem de Sucesso de envio-->
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for msg in messages %}
+      <div class="alert-sucesso">{{ msg }}</div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+
+  <form action="{{ url_for('pedido.criar_pedido') }}" method="POST">
+
+    <label for="nome_cliente">Seu nome *</label>
+    <input type="text" name="nome_cliente" id="nome_cliente" required placeholder="Digite seu nome">
+    
+    <label for="musica">Música desejada *</label>
+    <input type="text" id="musica" name="musica" required placeholder="Nome da Música">
+
+    <label for="observacao">Observação</label>
+    <textarea name="observacao" id="observacao" placeholder="Alguma observação? (opcional)"></textarea>
+
+    <button type="submit">Pedir Pagode</button>
+
+
+  </form>
   
 {% endblock %}
