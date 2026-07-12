@@ -1,3 +1,167 @@
+/* ============================================================
+   GRUPO PEDE PAGODE — CSS Custom Properties
+   ============================================================ */
+
+:root {
+
+  /* ── CORES PRINCIPAIS ── */
+  --cor-ouro:       #F2A900;
+  --cor-terracota:  #E15D2A;
+  --cor-marrom:     #4A2E18;
+  --cor-bege:       #F5E9D3;
+  --cor-verde:      #009B3A;
+  --cor-preto:      #1A1A1A;
+
+  /* ── VARIAÇÕES DE OPACIDADE ── */
+  --cor-marrom-12:  rgba(74, 46, 24, 0.12);
+  --cor-marrom-15:  rgba(74, 46, 24, 0.15);
+  --cor-marrom-25:  rgba(74, 46, 24, 0.25);
+  --cor-ouro-18:    rgba(242, 169, 0, 0.18);
+  --cor-ouro-30:    rgba(242, 169, 0, 0.30);
+  --cor-terracota-15: rgba(225, 93, 42, 0.15);
+  --cor-bege-65:    rgba(245, 233, 211, 0.65);
+
+  /* ── SUPERFÍCIES ── */
+  --surf-fundo:     var(--cor-bege);
+  --surf-navbar:    var(--cor-marrom);
+  --surf-footer:    var(--cor-marrom);
+  --surf-header:    var(--cor-marrom);
+  --surf-card:      rgba(255, 255, 255, 0.70);
+  --surf-card-hover: #ffffff;
+  --surf-filtro:    #EDE0C8;
+  --surf-input:     rgba(255, 255, 255, 0.60);
+
+  /* ── TEXTO ── */
+  --txt-primario:   var(--cor-marrom);
+  --txt-claro:      var(--cor-bege);
+  --txt-destaque:   var(--cor-ouro);
+  --txt-acento:     var(--cor-terracota);
+  --txt-mudo:       rgba(74, 46, 24, 0.75);
+  --txt-mudo-claro: rgba(245, 233, 211, 0.65);
+
+  /* ── TIPOGRAFIA ── */
+  --font-display:   'Anton', sans-serif;
+  --font-marca:     'Abril Fatface', serif;
+  --font-corpo:     'Poppins', sans-serif;
+
+  --size-xs:        0.62rem;   /* 9.9px  — contadores de voto */
+  --size-sm:        0.68rem;   /* 10.9px — badges, labels caps */
+  --size-base:      0.78rem;   /* 12.5px — artista, tags */
+  --size-md:        0.95rem;   /* 15.2px — botões, inputs */
+  --size-lg:        1rem;      /* 16px   — corpo, subtítulos */
+  --size-xl:        1.2rem;    /* 19.2px — nome dos cards */
+  --size-h2:        clamp(2.5rem, 5vw, 4rem);   /* Integrantes */
+  --size-hero:      clamp(3.2rem, 7vw, 6rem);   /* Título hero */
+  --size-page:      clamp(3rem,  7vw, 5.5rem);  /* Títulos de página */
+
+  --peso-normal:    400;
+  --peso-medio:     500;
+  --peso-semi:      600;
+  --peso-negrito:   700;
+  --peso-extra:     800;
+
+  --tracking-apertado:  0.02em;
+  --tracking-normal:    0.04em;
+  --tracking-medio:     0.06em;
+  --tracking-amplo:     0.08em;
+  --tracking-caps:      0.12em;
+  --tracking-super:     0.20em;
+  --tracking-display:   0.22em;
+
+  --leading-display: 0.95;
+  --leading-apertado: 1;
+  --leading-normal:  1.5;
+  --leading-relaxado: 1.70;
+  --leading-solto:   1.78;
+
+  /* ── ESPAÇAMENTO ── */
+  --esp-1:    0.3rem;    /*  4.8px */
+  --esp-2:    0.5rem;    /*  8px   */
+  --esp-3:    0.75rem;   /* 12px   */
+  --esp-4:    1rem;      /* 16px   */
+  --esp-5:    1.25rem;   /* 20px   */
+  --esp-6:    1.5rem;    /* 24px   */
+  --esp-8:    2rem;      /* 32px   */
+  --esp-10:   2.5rem;    /* 40px   */
+  --esp-12:   3rem;      /* 48px   */
+  --esp-14:   3.5rem;    /* 56px   */
+  --esp-16:   4rem;      /* 64px   */
+  --esp-20:   5rem;      /* 80px   */
+
+  /* ── LAYOUT ── */
+  --navbar-altura:    68px;
+  --largura-max:      1280px;
+  --largura-form:     560px;
+  --largura-header:   680px;
+  --largura-texto:    420px;
+  --largura-subtitulo: 480px;
+
+  /* ── BORDAS ── */
+  --borda-cor:          rgba(74, 46, 24, 0.10);
+  --borda-cor-forte:    rgba(74, 46, 24, 0.15);
+  --borda-cor-ouro:     var(--cor-ouro);
+  --borda-espessura:    2px;
+  --borda-espessura-sm: 1.5px;
+
+  /* ── ARREDONDAMENTOS ── */
+  --raio-sm:     0.5rem;   /*  8px — botões de voto */
+  --raio-md:     0.875rem; /* 14px — inputs */
+  --raio-lg:     1rem;     /* 16px — cards */
+  --raio-xl:     1.5rem;   /* 24px — foto hero */
+  --raio-pill:   3rem;     /* 48px — botões pill, badges */
+  --raio-circulo: 50%;     /* círculos */
+
+  /* ── SOMBRAS ── */
+  --sombra-sm:    0 2px 8px rgba(123, 74, 18, 0.06);
+  --sombra-md:    0 4px 16px rgba(242, 169, 0, 0.30);
+  --sombra-lg:    0 8px 32px rgba(123, 74, 18, 0.14);
+  --sombra-navbar: 0 4px 24px rgba(74, 46, 24, 0.22);
+  --sombra-foto:  0 28px 72px rgba(123, 74, 18, 0.28), 0 4px 20px rgba(123, 74, 18, 0.12);
+
+  /* ── GRADIENTES ── */
+  --grad-texto:   linear-gradient(90deg, #F2A900 0%, #E15D2A 100%);
+  --grad-overlay-foto: linear-gradient(to top, rgba(123, 74, 18, 0.35) 0%, transparent 50%);
+  --grad-overlay-card: linear-gradient(to top, rgba(26, 16, 8, 0.88) 0%, rgba(26, 16, 8, 0.20) 50%, transparent 100%);
+  --grad-hero-bg: radial-gradient(ellipse 70% 70% at 30% 40%, rgba(242, 169, 0, 0.13) 0%, transparent 65%),
+                  radial-gradient(ellipse 50% 50% at 80% 80%, rgba(225, 93, 42, 0.08) 0%, transparent 60%);
+  --grad-header-bg: radial-gradient(ellipse 60% 80% at 20% 50%, rgba(242, 169, 0, 0.10) 0%, transparent 60%);
+
+  /* ── TRANSIÇÕES ── */
+  --trans-rapida:  all 0.18s ease;
+  --trans-normal:  all 0.22s ease;
+  --trans-media:   all 0.4s ease;
+  --trans-lenta:   all 0.5s ease;
+  --trans-entrada: opacity 0.6s ease, transform 0.6s ease;
+  --trans-titulo:  opacity 0.7s ease, transform 0.7s ease;
+
+  /* ── Z-INDEX ── */
+  --z-base:    1;
+  --z-overlay: 10;
+  --z-drawer:  99;
+  --z-navbar:  100;
+
+  /* ── BADGES DE GÊNERO ── */
+  --genero-pagode-bg:    rgba(242, 169, 0,  0.18);
+  --genero-pagode-txt:   #7B4A12;
+  --genero-samba-bg:     rgba(225, 93,  42, 0.15);
+  --genero-samba-txt:    #A03010;
+  --genero-mpb-bg:       rgba(0,   155, 58, 0.12);
+  --genero-mpb-txt:      #005A20;
+  --genero-bossa-bg:     rgba(14,  90,  114,0.12);
+  --genero-bossa-txt:    #0A4060;
+  --genero-axe-bg:       rgba(225, 93,  42, 0.20);
+  --genero-axe-txt:      #8B2500;
+  --genero-sertanejo-bg: rgba(123, 74,  18, 0.12);
+  --genero-sertanejo-txt:#4A2E18;
+
+  /* ── BREAKPOINTS (uso via @media, listado como referência) ── */
+  /* --bp-mobile: 600px  */
+  /* --bp-tablet: 900px  */
+  /* --bp-desktop: 1280px */
+}
+
+
+
 
 a{
     text-decoration: none;

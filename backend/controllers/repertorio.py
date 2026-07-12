@@ -21,17 +21,31 @@ class RepertorioController:
 
     
 
-    def adicionar_like(self, id):
+    def adicionar_like(self, musica_id):
 
-        self.service.adicionar_like(id)
+        status = self.service.adicionar_like(musica_id)
 
-        return jsonify({"status" : 200})
+
+        if status :
+
+            return jsonify({"status" : 200})
+        
+        else :
+        
+            return jsonify({"status" : 500})
     
 
 
 
-    def adicionar_dislike(self, id):
+    def adicionar_dislike(self, musica_id):
 
-        self.service.adicionar_dislike(id)
+        status = self.service.adicionar_dislike(musica_id)
 
-        return jsonify({"status" : 200})
+
+        if status :
+
+            return jsonify({"status" : 200 , })
+        
+        else :
+
+            return jsonify({"status" : 500})
