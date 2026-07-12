@@ -44,25 +44,50 @@ class MusicaService:
 
 
 
-    def adicionar_like(self, id):
+    def adicionar_like(self, musica_id):
 
         connection = get_connection()
 
-        connection.execute("UPDATE Musicas SET likes = likes + 1 WHERE id = ?" , id)
+        cursor = connection.cursor()
+
+        cursor.execute(
+            """
+            UPDATE songs
+            SET likes = likes + 1
+            WHERE id = ?
+            """,
+            (musica_id,)
+        )
 
         connection.commit()
 
+        
+
         connection.close()
+
+        return True
 
     
 
 
-    def adicionar_dislike(self, id):
+    def adicionar_dislike(self, musica_id):
 
         connection = get_connection()
 
-        connection.execute("UPDATE Musicas SET dislikes = likes + 1 WHERE id = ?" , id)
+        cursor = connection.cursor()
+
+        cursor.execute(
+            """
+            UPDATE songs
+            SET dislikes = dislikes + 1
+            WHERE id = ?
+            """,
+            (musica_id,)
+        )
 
         connection.commit()
 
+
         connection.close()
+
+        return True

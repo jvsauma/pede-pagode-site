@@ -10,13 +10,25 @@
 
         {% for musica in repertorio %}
 
-          <div class="repertorio-card">
+          <div class="musica-card" data-id="{{ musica.id }}">
 
-            <h3>Musica : {{ musica.nome }}</h3>
-            <p>Artista : {{ musica.artista }}</p>
-            <p>Genero : {{ musica.genero }}</p>
+            <h2>{{ musica.nome }}</h2>
 
-          </div>
+            <button onclick="reagir({{ musica.id }}, 'like')" class = "btn-like">
+                ❤️
+                <span class="contador-like">
+                    {{ musica.likes }}
+                </span>
+            </button>
+
+            <button onclick="reagir({{ musica.id }}, 'dislike')" class = "btn-dislike">
+                👎
+                <span class="contador-dislike">
+                    {{ musica.dislikes }}
+                </span>
+            </button>
+
+        </div>
         {% endfor %}
 
 
@@ -27,5 +39,7 @@
 
 
   </div>
+
+  <script src="{{ url_for('static', filename='js/repertorio.js') }}"></script>
   
 {% endblock %}
