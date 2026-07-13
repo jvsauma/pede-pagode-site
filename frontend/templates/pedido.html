@@ -1,33 +1,138 @@
 {% extends "base.html" %}
 
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/pedido.css') }}">
+{% endblock %}
+
 {% block content %}
 
-  <h1>Peça seu pagode</h1>
+<section class="pedido-hero">
+  <span class="nota-decorativa nota-decorativa--1" aria-hidden="true">&#9834;</span>
+  <span class="nota-decorativa nota-decorativa--2" aria-hidden="true">&#9834;</span>
+  <span class="nota-decorativa nota-decorativa--3" aria-hidden="true">&#9834;</span>
+  <span class="nota-decorativa nota-decorativa--4" aria-hidden="true">&#9834;</span>
 
-<!--Mensagem de Sucesso de envio-->
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    {% for msg in messages %}
-      <div class="alert-sucesso">{{ msg }}</div>
-    {% endfor %}
-  {% endif %}
-{% endwith %}
+  <div class="pedido-hero__inner">
+    <div class="pedido-hero__conteudo">
+      <h1 class="pedido-titulo">
+        <span class="pedido-titulo__linha--clara">Pedir</span>
+        <span class="pedido-titulo__linha--grad">Pagode</span>
+      </h1>
+      <p class="pedido-subtitulo">
+        Manda o pedido que a gente toca pra você. É só chegar, escolher a música e
+        <span class="pedido-subtitulo__destaque">viver o samba</span>.
+      </p>
+    </div>
+  </div>
+</section>
 
+<div class="pedido-conteudo">
+  <div class="pedido-grid">
 
-  <form action="{{ url_for('pedido.criar_pedido') }}" method="POST">
+    <div class="pedido-info">
 
-    <label for="nome_cliente">Seu nome *</label>
-    <input type="text" name="nome_cliente" id="nome_cliente" required placeholder="Digite seu nome">
-    
-    <label for="musica">Música desejada *</label>
-    <input type="text" id="musica" name="musica" required placeholder="Nome da Música">
+      <div class="pedido-info__cabecalho">
+        <span class="vinil" aria-hidden="true"></span>
+        <div>
+          <h2 class="pedido-info__titulo">A roda é sua</h2>
+          <p class="pedido-info__subtitulo">toca o que o coração pedir</p>
+        </div>
+      </div>
 
-    <label for="observacao">Observação</label>
-    <textarea name="observacao" id="observacao" placeholder="Alguma observação? (opcional)"></textarea>
+      <div class="pedido-passos">
 
-    <button type="submit">Pedir Pagode</button>
+        <div class="pedido-passo">
+          <div class="pedido-passo__icone-wrap">
+            <span class="pedido-passo__numero">1</span>
+            <span class="pedido-passo__icone">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"></circle><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"></path></svg>
+            </span>
+          </div>
+          <div>
+            <h3 class="pedido-passo__titulo">Diga quem é você</h3>
+            <p class="pedido-passo__desc">A gente faz questão de chamar você pelo nome na roda.</p>
+          </div>
+        </div>
 
+        <div class="pedido-passo">
+          <div class="pedido-passo__icone-wrap">
+            <span class="pedido-passo__numero">2</span>
+            <span class="pedido-passo__icone">
+              <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+            </span>
+          </div>
+          <div>
+            <h3 class="pedido-passo__titulo">Escolha a música</h3>
+            <p class="pedido-passo__desc">Do repertório ou aquele pedido especial de coração.</p>
+          </div>
+        </div>
 
-  </form>
-  
+        <div class="pedido-passo">
+          <div class="pedido-passo__icone-wrap">
+            <span class="pedido-passo__numero">3</span>
+            <span class="pedido-passo__icone">
+              <svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"></path></svg>
+            </span>
+          </div>
+          <div>
+            <h3 class="pedido-passo__titulo">Manda o recado</h3>
+            <p class="pedido-passo__desc">Uma dedicatória, um salve, o motivo da festa.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <blockquote class="pedido-citacao">
+        <p class="pedido-citacao__texto">"Canta canta, minha gente, deixa a tristeza pra lá. Canta forte, canta alto, que a vida vai melhorar."</p>
+        <p class="pedido-citacao__autor">Martinho da Vila</p>
+      </blockquote>
+
+    </div>
+
+    <div class="pedido-form-card">
+
+      <span class="pedido-form-card__decor" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+      </span>
+
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for msg in messages %}
+            <div class="alert-sucesso">{{ msg }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      <form action="{{ url_for('pedido.criar_pedido') }}" method="POST">
+
+        <div class="campo">
+          <label for="nome_cliente">Seu nome *</label>
+          <input type="text" name="nome_cliente" id="nome_cliente" required placeholder="Como você se chama?">
+        </div>
+
+        <div class="campo">
+          <label for="musica">Música desejada *</label>
+          <input type="text" id="musica" name="musica" required placeholder="Qual música você quer ouvir?">
+        </div>
+
+        <div class="campo">
+          <div class="campo-observacoes__cabecalho">
+            <label for="observacao">Observações</label>
+            <span class="badge-opcional">Opcional</span>
+          </div>
+          <textarea name="observacao" id="observacao" placeholder="Algum recado especial pro grupo?"></textarea>
+        </div>
+
+        <button type="submit" class="btn-enviar">
+          Pede Pagode
+          <svg viewBox="0 0 24 24"><path d="M22 2 11 13"></path><path d="M22 2 15 22 11 13 2 9 22 2z"></path></svg>
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+</div>
+
 {% endblock %}

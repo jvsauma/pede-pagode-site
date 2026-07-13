@@ -1,45 +1,101 @@
 {% extends "base.html" %}
 
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/repertorio.css') }}">
+{% endblock %}
+
 {% block content %}
 
-  <h1>Repertorio</h1>
+<section class="repertorio-hero">
+  <div class="repertorio-hero__inner">
+    <div class="repertorio-hero__conteudo">
+      <span class="tag-pill">Repertório completo</span>
+      <h1 class="repertorio-titulo">
+        <span class="repertorio-titulo__linha repertorio-titulo__linha--clara">Nossa</span>
+        <span class="repertorio-titulo__linha repertorio-titulo__linha--grad">Setlist</span>
+      </h1>
+      <p class="repertorio-subtitulo">Escolha sua música e manda o pedido. A roda não para.</p>
+    </div>
+  </div>
+</section>
+
+{% set generos_ordem = ["Pagode", "Samba", "MPB", "Bossa Nova", "Sertanejo", "Axé"] %}
+
+<div class="repertorio-body">
+
+  <nav class="repertorio-filtros" aria-label="Filtrar por gênero">
+    <div class="filtro-genero__lista">
+
+      <input type="radio" name="filtro-genero" id="filtro-todos" class="filtro-radio" checked>
+      <label for="filtro-todos" class="filtro-pill">Todos ({{ repertorio|length }})</label>
+
+      {% for genero in generos_ordem %}
+        {% set qtd = repertorio|selectattr('genero', 'equalto', genero)|list|length %}
+        {% if qtd > 0 %}
+          <input type="radio" name="filtro-genero" id="filtro-{{ loop.index }}" class="filtro-radio" data-genero="{{ genero }}">
+          <label for="filtro-{{ loop.index }}" class="filtro-pill" data-genero="{{ genero }}">{{ genero }} ({{ qtd }})</label>
+        {% endif %}
+      {% endfor %}
+
+    </div>
+  </nav>
 
   <div class="repertorio-container">
 
     {% if repertorio|length > 0 %}
 
+      <div class="repertorio-grid">
+
         {% for musica in repertorio %}
 
-          <div class="musica-card" data-id="{{ musica.id }}">
+          <div class="musica-card" data-id="{{ musica.id }}" data-genero="{{ musica.genero }}">
 
-            <h2>{{ musica.nome }}</h2>
+            <span class="musica-numero">{{ "%02d"|format(loop.index) }}</span>
 
-            <button onclick="reagir({{ musica.id }}, 'like')" class = "btn-like">
-                ❤️
-                <span class="contador-like">
-                    {{ musica.likes }}
+            <div class="musica-info">
+
+              <div class="musica-titulo-linha">
+                <h2 class="musica-titulo">{{ musica.nome }}</h2>
+                <span class="badge-genero" data-genero="{{ musica.genero }}">{{ musica.genero }}</span>
+              </div>
+
+              <p class="musica-artista">
+                <span class="musica-artista__nota">&#9834;</span> {{ musica.artista }}
+              </p>
+
+            </div>
+
+            <div class="musica-acoes">
+
+              <button onclick="reagir({{ musica.id }}, 'like')" class="btn-like">
+                <span class="icone-voto">
+                  <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
                 </span>
-            </button>
+                <span class="contador-like">{{ musica.likes }}</span>
+              </button>
 
-            <button onclick="reagir({{ musica.id }}, 'dislike')" class = "btn-dislike">
-                👎
-                <span class="contador-dislike">
-                    {{ musica.dislikes }}
+              <button onclick="reagir({{ musica.id }}, 'dislike')" class="btn-dislike">
+                <span class="icone-voto">
+                  <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"></path></svg>
                 </span>
-            </button>
+                <span class="contador-dislike">{{ musica.dislikes }}</span>
+              </button>
 
-        </div>
+            </div>
+
+          </div>
         {% endfor %}
 
-
+      </div>
 
     {% else %}
-      <p>Não há músicas cadastradas no repertório.</p>
+      <p class="repertorio-vazio">Não há músicas cadastradas no repertório.</p>
     {% endif %}
-
 
   </div>
 
-  <script src="{{ url_for('static', filename='js/repertorio.js') }}"></script>
-  
+</div>
+
+<script src="{{ url_for('static', filename='js/repertorio.js') }}"></script>
+
 {% endblock %}
