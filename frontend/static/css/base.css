@@ -170,10 +170,17 @@
 }
 
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     margin: 0;
     font-family: var(--font-corpo);
     background-color: var(--surf-fundo);
     color: var(--txt-primario);
+}
+
+main {
+    flex: 1 0 auto;
 }
 
 img {
