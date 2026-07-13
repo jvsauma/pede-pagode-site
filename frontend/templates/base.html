@@ -5,29 +5,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}Grupo Pede Pagode{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
 </head>
 
 <body>
 
-    <div class= "nav-container">
+    <header class="navbar">
+        <div class="nav-container">
 
+            <a href="/" class="logo">
+                <img src="{{ url_for('static', filename='images/Logo_Pede_Pagode.jpeg') }}" alt="Pede Pagode" class="logo-img">
+            </a>
 
-        <div class = "logo">
-            <a href="/"><h3>Pede Pagode</h3></a>
+            <nav class="nav-links-container">
+                <ul class="nav-links">
+                    <li><a href="{{ url_for('pedido.pagina_pedido') }}">Pedir Pagode</a></li>
+                    <li><a href="{{ url_for('repertorio.listar_repertorio') }}">Ver Setlist</a></li>
+                </ul>
+            </nav>
+
         </div>
-        <div class = "nav-links-container">
-            <ul class = "nav-links">
-                <li><a href="{{ url_for('pedido.pagina_pedido') }}">Pede Pagode</a></li>
-                <li><a href="{{ url_for('repertorio.listar_repertorio') }}">Setlist</a></li>
-                <li><a href="#">Integrantes</a></li>
-                <li><a href="#">Sobre</a></li>
-                <li><a href="#">Contato</a></li>
-            </ul>
-        </div>
-        </nav>
-
-    </div>
+    </header>
 
   <main>
     {% block content %}{% endblock %}
