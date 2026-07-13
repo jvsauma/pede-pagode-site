@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  {% block extra_css %}{% endblock %}
 </head>
 
 <body>
@@ -34,6 +35,6 @@
     {% block content %}{% endblock %}
   </main>
 
-  <footer>
-    <p>&copy; 2024 Grupo Pede Pagode. Todos os direitos reservados.</p>
+  <footer class="rodape">
+    <p class="rodape-texto">&copy; 2026 Grupo Pede Pagode. Todos os direitos reservados.</p>
   </footer>
