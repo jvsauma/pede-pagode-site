@@ -1,7 +1,42 @@
 {% extends "base.html" %}
 
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
 {% block content %}
 
-  <h1>HOME</h1>
-  
+  <section class="hero">
+    <div class="hero-container">
+
+      <div class="hero-conteudo">
+        <p class="hero-eyebrow">Onde a resenha acontece de verdade!</p>
+
+        <h1 class="hero-titulo">
+          <span class="hero-titulo-linha hero-titulo-grupo">Grupo</span>
+          <span class="hero-titulo-linha hero-titulo-pede">Pede</span>
+          <span class="hero-titulo-linha hero-titulo-pagode">Pagode</span>
+        </h1>
+
+        <p class="hero-subtitulo">
+          Chegue na roda. Peça sua música. <strong class="hero-destaque">Viva o samba.</strong>
+        </p>
+
+        <div class="hero-acoes">
+          <a href="{{ url_for('pedido.pagina_pedido') }}" class="btn btn-primario">Pedir Pagode</a>
+          <a href="{{ url_for('repertorio.listar_repertorio') }}" class="btn btn-secundario">Ver Setlist</a>
+        </div>
+      </div>
+
+      <div class="hero-media">
+        <img
+          src="{{ url_for('static', filename='images/foto_pede_pagode.png') }}"
+          alt="Integrantes do Grupo Pede Pagode em uma roda de samba"
+          class="hero-foto"
+        >
+      </div>
+
+    </div>
+  </section>
+
 {% endblock %}
