@@ -148,3 +148,125 @@
         gap: var(--esp-8);
     }
 }
+
+/* ============================================================
+   HOME — INTEGRANTES
+   ============================================================ */
+
+.integrantes-cabecalho {
+    background-color: var(--surf-header);
+    background-image: var(--grad-header-bg);
+    padding: var(--esp-12) var(--esp-8);
+    text-align: center;
+}
+
+.integrantes-eyebrow {
+    margin: 0 0 var(--esp-2);
+    color: var(--txt-acento);
+    font-family: var(--font-corpo);
+    font-size: var(--size-base);
+    font-weight: var(--peso-semi);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-caps);
+}
+
+.integrantes-titulo {
+    margin: 0;
+    color: var(--txt-claro);
+    font-family: var(--font-display);
+    font-size: var(--size-h2);
+    line-height: var(--leading-display);
+    text-transform: uppercase;
+}
+
+.integrantes-grade {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.integrante-card {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(28px);
+    transition: var(--trans-entrada);
+}
+
+.integrante-card.em-vista {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.integrante-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: var(--cor-ouro);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: var(--trans-normal);
+    z-index: 1;
+}
+
+.integrante-card:hover::before {
+    transform: scaleX(1);
+}
+
+.integrante-foto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.integrante-info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: var(--esp-4);
+    background-image: var(--grad-overlay-card);
+}
+
+.integrante-nome {
+    margin: 0;
+    color: var(--txt-claro);
+    font-family: var(--font-corpo);
+    font-size: var(--size-xl);
+    font-weight: var(--peso-negrito);
+}
+
+.integrante-funcao {
+    margin: var(--esp-1) 0 0;
+    color: var(--cor-ouro);
+    font-family: var(--font-corpo);
+    font-size: var(--size-sm);
+    font-weight: var(--peso-semi);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-caps);
+}
+
+.integrante-card:nth-child(1) { transition-delay: 0s; }
+.integrante-card:nth-child(2) { transition-delay: 0.08s; }
+.integrante-card:nth-child(3) { transition-delay: 0.16s; }
+.integrante-card:nth-child(4) { transition-delay: 0.24s; }
+.integrante-card:nth-child(5) { transition-delay: 0.32s; }
+
+@media (max-width: 900px) {
+    .integrantes-grade {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 500px) {
+    .integrantes-grade {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .integrantes-cabecalho {
+        padding: var(--esp-10) var(--esp-4);
+    }
+}
