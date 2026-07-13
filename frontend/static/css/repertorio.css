@@ -1,0 +1,324 @@
+/* ============================================================
+   REPERTÓRIO — estilos da página de setlist
+   ============================================================ */
+
+/* ---------- hero ---------- */
+
+.repertorio-hero {
+  background-color: var(--surf-header);
+  background-image: var(--grad-header-bg);
+  padding: var(--esp-16) 0 var(--esp-14);
+}
+
+.repertorio-hero__inner {
+  max-width: var(--largura-max);
+  margin: 0 auto;
+  padding: 0 var(--esp-8);
+}
+
+.repertorio-hero__conteudo {
+  max-width: var(--largura-header);
+}
+
+.repertorio-titulo {
+  font-family: var(--font-display);
+  font-size: var(--size-page);
+  line-height: var(--leading-display);
+  text-transform: uppercase;
+  margin: var(--esp-4) 0;
+}
+
+.repertorio-titulo__linha {
+  display: block;
+}
+
+.repertorio-titulo__linha--clara {
+  color: var(--txt-claro);
+}
+
+.repertorio-titulo__linha--grad {
+  background-image: var(--grad-texto);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.repertorio-subtitulo {
+  font-family: var(--font-corpo);
+  font-size: var(--size-lg);
+  color: var(--txt-mudo-claro);
+  max-width: var(--largura-subtitulo);
+}
+
+/* ---------- filtros ---------- */
+
+.repertorio-filtros {
+  background-color: var(--surf-filtro);
+  border-bottom: var(--borda-espessura-sm) solid var(--borda-cor);
+}
+
+.filtro-genero__lista {
+  max-width: var(--largura-max);
+  margin: 0 auto;
+  padding: var(--esp-4) var(--esp-8);
+  display: flex;
+  align-items: center;
+  gap: var(--esp-2);
+  overflow-x: auto;
+}
+
+.filtro-radio {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+.filtro-pill {
+  flex-shrink: 0;
+  cursor: pointer;
+  font-family: var(--font-corpo);
+  font-size: var(--size-base);
+  font-weight: var(--peso-semi);
+  padding: var(--esp-2) var(--esp-4);
+  border-radius: var(--raio-pill);
+  background-color: var(--surf-card);
+  color: var(--txt-primario);
+  transition: var(--trans-rapida);
+  user-select: none;
+}
+
+.filtro-pill[data-genero="Pagode"]      { background-color: var(--genero-pagode-bg);      color: var(--genero-pagode-txt); }
+.filtro-pill[data-genero="Samba"]       { background-color: var(--genero-samba-bg);       color: var(--genero-samba-txt); }
+.filtro-pill[data-genero="MPB"]         { background-color: var(--genero-mpb-bg);         color: var(--genero-mpb-txt); }
+.filtro-pill[data-genero="Bossa Nova"]  { background-color: var(--genero-bossa-bg);       color: var(--genero-bossa-txt); }
+.filtro-pill[data-genero="Sertanejo"]   { background-color: var(--genero-sertanejo-bg);   color: var(--genero-sertanejo-txt); }
+.filtro-pill[data-genero="Axé"]         { background-color: var(--genero-axe-bg);         color: var(--genero-axe-txt); }
+
+.filtro-radio:checked + .filtro-pill {
+  background-color: var(--cor-marrom);
+  color: var(--txt-claro);
+  box-shadow: var(--sombra-sm);
+}
+
+.filtro-radio:focus-visible + .filtro-pill {
+  outline: var(--borda-espessura-sm) solid var(--cor-ouro);
+  outline-offset: 2px;
+}
+
+/* ---------- grid ---------- */
+
+.repertorio-container {
+  max-width: var(--largura-max);
+  margin: 0 auto;
+  padding: var(--esp-8);
+}
+
+.repertorio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--esp-5);
+}
+
+.repertorio-vazio {
+  text-align: center;
+  color: var(--txt-mudo);
+  font-family: var(--font-corpo);
+  padding: var(--esp-16) 0;
+}
+
+/* ---------- cards ---------- */
+
+.musica-card {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-4);
+  background-color: var(--surf-card);
+  border: var(--borda-espessura) solid transparent;
+  border-radius: var(--raio-lg);
+  padding: var(--esp-5);
+  box-shadow: var(--sombra-sm);
+  transition: var(--trans-normal);
+}
+
+.musica-card:hover,
+.musica-card:focus-within {
+  background-color: var(--surf-card-hover);
+  border-color: var(--cor-ouro);
+  box-shadow: var(--sombra-md);
+  transform: translateY(-2px);
+}
+
+.musica-numero {
+  flex-shrink: 0;
+  width: 2ch;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--cor-marrom-25);
+}
+
+.musica-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-1);
+}
+
+.musica-titulo-linha {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--esp-2);
+}
+
+.musica-titulo {
+  margin: 0;
+  font-family: var(--font-corpo);
+  font-weight: var(--peso-extra);
+  font-size: var(--size-xl);
+  line-height: var(--leading-apertado);
+  color: var(--txt-primario);
+}
+
+.badge-genero {
+  white-space: nowrap;
+  font-family: var(--font-corpo);
+  font-size: var(--size-sm);
+  font-weight: var(--peso-semi);
+  padding: var(--esp-1) var(--esp-3);
+  border-radius: var(--raio-pill);
+}
+
+.badge-genero[data-genero="Pagode"]      { background-color: var(--genero-pagode-bg);      color: var(--genero-pagode-txt); }
+.badge-genero[data-genero="Samba"]       { background-color: var(--genero-samba-bg);       color: var(--genero-samba-txt); }
+.badge-genero[data-genero="MPB"]         { background-color: var(--genero-mpb-bg);         color: var(--genero-mpb-txt); }
+.badge-genero[data-genero="Bossa Nova"]  { background-color: var(--genero-bossa-bg);       color: var(--genero-bossa-txt); }
+.badge-genero[data-genero="Sertanejo"]   { background-color: var(--genero-sertanejo-bg);   color: var(--genero-sertanejo-txt); }
+.badge-genero[data-genero="Axé"]         { background-color: var(--genero-axe-bg);         color: var(--genero-axe-txt); }
+
+.musica-artista {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--esp-1);
+  font-family: var(--font-corpo);
+  font-size: var(--size-base);
+  font-weight: var(--peso-medio);
+  color: var(--txt-acento);
+}
+
+.musica-acoes {
+  display: flex;
+  gap: var(--esp-2);
+  flex-shrink: 0;
+}
+
+.btn-like,
+.btn-dislike {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  border-radius: var(--raio-sm);
+  cursor: pointer;
+  font-family: var(--font-corpo);
+  font-size: var(--size-xs);
+  font-weight: var(--peso-semi);
+  transition: var(--trans-rapida);
+}
+
+.btn-like {
+  background-color: var(--acao-like-bg);
+  color: var(--acao-like-txt);
+}
+
+.btn-like:hover:not(:disabled) {
+  background-color: var(--acao-like-bg-hover);
+}
+
+.btn-dislike {
+  background-color: var(--acao-dislike-bg);
+  color: var(--acao-dislike-txt);
+}
+
+.btn-dislike:hover:not(:disabled) {
+  background-color: var(--acao-dislike-bg-hover);
+}
+
+.btn-like:disabled,
+.btn-dislike:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.icone-voto {
+  width: 18px;
+  height: 18px;
+  line-height: 0;
+}
+
+.icone-voto svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------- filtro por gênero (somente CSS, sem JS) ---------- */
+
+.repertorio-body:has(.filtro-radio[data-genero="Pagode"]:checked)     .musica-card:not([data-genero="Pagode"]),
+.repertorio-body:has(.filtro-radio[data-genero="Samba"]:checked)      .musica-card:not([data-genero="Samba"]),
+.repertorio-body:has(.filtro-radio[data-genero="MPB"]:checked)        .musica-card:not([data-genero="MPB"]),
+.repertorio-body:has(.filtro-radio[data-genero="Bossa Nova"]:checked) .musica-card:not([data-genero="Bossa Nova"]),
+.repertorio-body:has(.filtro-radio[data-genero="Sertanejo"]:checked)  .musica-card:not([data-genero="Sertanejo"]),
+.repertorio-body:has(.filtro-radio[data-genero="Axé"]:checked)        .musica-card:not([data-genero="Axé"]) {
+  display: none;
+}
+
+/* ---------- responsivo ---------- */
+
+@media (max-width: 900px) {
+  .repertorio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .repertorio-hero {
+    padding: var(--esp-10) 0 var(--esp-8);
+  }
+
+  .repertorio-hero__inner {
+    padding: 0 var(--esp-4);
+  }
+
+  .filtro-genero__lista {
+    padding: var(--esp-3) var(--esp-4);
+  }
+
+  .repertorio-container {
+    padding: var(--esp-4);
+  }
+
+  .repertorio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .musica-card {
+    flex-wrap: wrap;
+  }
+
+  .musica-acoes {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
