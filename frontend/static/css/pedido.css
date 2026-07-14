@@ -419,6 +419,377 @@
   stroke-linejoin: round;
 }
 
+/* ---------- tela: pedido feito ---------- */
+
+.pedido-sucesso {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--esp-6) 0 var(--esp-2);
+}
+
+.pedido-sucesso[hidden] {
+  display: none;
+}
+
+.pedido-sucesso__confete {
+  position: absolute;
+  top: var(--esp-6);
+  left: var(--esp-6);
+  font-size: 1.4rem;
+}
+
+.pedido-sucesso__check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  margin-bottom: var(--esp-6);
+  border-radius: var(--raio-circulo);
+  background-color: var(--cor-ouro);
+  color: var(--cor-marrom);
+  box-shadow: var(--sombra-md);
+}
+
+.pedido-sucesso__check svg {
+  width: 36px;
+  height: 36px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.pedido-sucesso__titulo {
+  margin: 0 0 var(--esp-4);
+  font-family: var(--font-display);
+  font-size: var(--size-page);
+  line-height: var(--leading-display);
+  color: var(--txt-primario);
+  text-transform: uppercase;
+}
+
+.pedido-sucesso__texto {
+  margin: 0 0 var(--esp-8);
+  max-width: 380px;
+  font-family: var(--font-corpo);
+  font-size: var(--size-lg);
+  line-height: var(--leading-relaxado);
+  color: var(--txt-mudo);
+}
+
+.pedido-sucesso__texto strong {
+  color: var(--txt-primario);
+  font-weight: var(--peso-negrito);
+}
+
+.btn-outro-pedido {
+  width: auto;
+  padding: var(--esp-3) var(--esp-8);
+}
+
+/* ---------- listagem: pedidos da roda ---------- */
+
+.pedidos-lista {
+  margin-top: var(--esp-12);
+}
+
+.pedidos-lista__cabecalho {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-4);
+  margin-bottom: var(--esp-6);
+  flex-wrap: wrap;
+}
+
+.pedidos-lista__icone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  border-radius: var(--raio-circulo);
+  background-color: var(--cor-marrom);
+  color: var(--cor-ouro);
+}
+
+.pedidos-lista__icone svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.pedidos-lista__titulo-wrap {
+  flex: 1;
+  min-width: 0;
+}
+
+.pedidos-lista__titulo {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--size-2xl);
+  color: var(--txt-primario);
+  text-transform: uppercase;
+}
+
+.pedidos-lista__subtitulo {
+  margin: var(--esp-1) 0 0;
+  font-family: var(--font-corpo);
+  font-size: var(--size-base);
+  color: var(--txt-mudo);
+}
+
+.pedidos-lista__legenda {
+  display: flex;
+  gap: var(--esp-5);
+  flex-wrap: wrap;
+}
+
+.pedidos-lista__legenda-item {
+  position: relative;
+  padding-left: var(--esp-4);
+  font-family: var(--font-corpo);
+  font-size: var(--size-sm);
+  font-weight: var(--peso-semi);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--txt-mudo);
+}
+
+.pedidos-lista__legenda-item::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--raio-circulo);
+  transform: translateY(-50%);
+}
+
+.pedidos-lista__legenda-item--pendente::before { background-color: var(--cor-ouro); }
+.pedidos-lista__legenda-item--aceito::before { background-color: var(--cor-verde); }
+.pedidos-lista__legenda-item--rejeitado::before { background-color: var(--cor-terracota); }
+
+.pedidos-lista__itens {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-4);
+}
+
+.pedidos-lista__vazio {
+  padding: var(--esp-8) 0;
+  text-align: center;
+  font-family: var(--font-corpo);
+  color: var(--txt-mudo);
+}
+
+.pedido-item {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-4);
+  padding: var(--esp-4) var(--esp-5);
+  background-color: var(--surf-card-hover);
+  border: var(--borda-espessura-sm) solid var(--borda-cor-forte);
+  border-left: 4px solid var(--cor-ouro);
+  border-radius: var(--raio-lg);
+  box-shadow: var(--sombra-sm);
+  transition: var(--trans-normal);
+}
+
+.pedido-item--aceito {
+  border-color: transparent;
+  border-left-color: var(--cor-verde);
+  background-color: var(--acao-like-bg);
+}
+
+.pedido-item--rejeitado {
+  border-color: transparent;
+  border-left-color: var(--cor-terracota);
+  background-color: var(--acao-dislike-bg);
+}
+
+.pedido-item__hora {
+  flex-shrink: 0;
+  width: 34px;
+  font-family: var(--font-corpo);
+  font-size: var(--size-xs);
+  font-weight: var(--peso-semi);
+  color: var(--txt-mudo);
+}
+
+.pedido-item__icone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: var(--raio-circulo);
+  background-color: var(--genero-pagode-bg);
+  color: var(--genero-pagode-txt);
+}
+
+.pedido-item__icone svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.pedido-item--aceito .pedido-item__icone {
+  background-color: var(--acao-like-bg-hover);
+  color: var(--acao-like-txt);
+}
+
+.pedido-item--rejeitado .pedido-item__icone {
+  background-color: var(--acao-dislike-bg-hover);
+  color: var(--acao-dislike-txt);
+}
+
+.pedido-item__corpo {
+  flex: 1;
+  min-width: 0;
+}
+
+.pedido-item__linha-titulo {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-3);
+  flex-wrap: wrap;
+}
+
+.pedido-item__musica {
+  font-family: var(--font-corpo);
+  font-weight: var(--peso-negrito);
+  font-size: var(--size-md);
+  color: var(--txt-primario);
+}
+
+.pedido-item__status {
+  display: inline-block;
+  padding: var(--esp-1) var(--esp-3);
+  border-radius: var(--raio-pill);
+  font-family: var(--font-corpo);
+  font-size: var(--size-xs);
+  font-weight: var(--peso-negrito);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  background-color: var(--genero-pagode-bg);
+  color: var(--genero-pagode-txt);
+}
+
+.pedido-item--aceito .pedido-item__status {
+  background-color: var(--acao-like-bg-hover);
+  color: var(--acao-like-txt);
+}
+
+.pedido-item--rejeitado .pedido-item__status {
+  background-color: var(--acao-dislike-bg-hover);
+  color: var(--acao-dislike-txt);
+}
+
+.pedido-item__meta {
+  margin: var(--esp-1) 0 0;
+  font-family: var(--font-corpo);
+  font-size: var(--size-base);
+  color: var(--txt-mudo);
+}
+
+.pedido-item__nome {
+  color: var(--txt-acento);
+  font-weight: var(--peso-semi);
+}
+
+.pedido-item__acoes {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-2);
+  flex-shrink: 0;
+}
+
+.btn-aceitar,
+.btn-rejeitar {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-1);
+  padding: var(--esp-2) var(--esp-4);
+  border: var(--borda-espessura-sm) solid transparent;
+  border-radius: var(--raio-pill);
+  font-family: var(--font-corpo);
+  font-size: var(--size-sm);
+  font-weight: var(--peso-semi);
+  cursor: pointer;
+  transition: var(--trans-rapida);
+}
+
+.btn-aceitar svg,
+.btn-rejeitar svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.btn-aceitar {
+  background-color: var(--acao-like-bg);
+  color: var(--acao-like-txt);
+}
+
+.btn-aceitar:hover {
+  background-color: var(--acao-like-bg-hover);
+}
+
+.btn-rejeitar {
+  background-color: var(--acao-dislike-bg);
+  color: var(--acao-dislike-txt);
+}
+
+.btn-rejeitar:hover {
+  background-color: var(--acao-dislike-bg-hover);
+}
+
+.pedido-item__resultado {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-1);
+  font-family: var(--font-corpo);
+  font-size: var(--size-sm);
+  font-weight: var(--peso-semi);
+}
+
+.pedido-item__resultado svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.pedido-item__resultado--aceito {
+  color: var(--acao-like-txt);
+}
+
+.pedido-item__resultado--rejeitado {
+  color: var(--acao-dislike-txt);
+}
+
 /* ---------- responsivo ---------- */
 
 @media (max-width: 900px) {
@@ -447,5 +818,20 @@
 
   .nota-decorativa {
     display: none;
+  }
+
+  .pedidos-lista__legenda {
+    flex-basis: 100%;
+    gap: var(--esp-3);
+  }
+
+  .pedido-item {
+    flex-wrap: wrap;
+  }
+
+  .pedido-item__acoes {
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: var(--esp-2);
   }
 }

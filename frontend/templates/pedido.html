@@ -89,7 +89,7 @@
 
     </div>
 
-    <div class="pedido-form-card">
+    <div class="pedido-form-card" id="pedido-form-card">
 
       <span class="pedido-form-card__decor" aria-hidden="true">
         <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
@@ -103,7 +103,7 @@
         {% endif %}
       {% endwith %}
 
-      <form action="{{ url_for('pedido.criar_pedido') }}" method="POST">
+      <form action="{{ url_for('pedido.criar_pedido') }}" method="POST" id="form-pedido">
 
         <div class="campo">
           <label for="nome_cliente">Seu nome *</label>
@@ -130,9 +130,101 @@
 
       </form>
 
+      <div class="pedido-sucesso" id="pedido-sucesso" hidden>
+        <span class="pedido-sucesso__confete" aria-hidden="true">&#127881;</span>
+
+        <span class="pedido-sucesso__check" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"></path></svg>
+        </span>
+
+        <h2 class="pedido-sucesso__titulo">Pedido feito!</h2>
+
+        <p class="pedido-sucesso__texto">
+          Recebemos seu pedido, <strong id="pedido-sucesso-nome"></strong>.
+          <br>
+          Bora tocar <span id="pedido-sucesso-musica"></span>!
+        </p>
+
+        <button type="button" class="btn-enviar btn-outro-pedido" id="btn-outro-pedido">
+          Fazer outro pedido
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="pedidos-lista">
+
+    <div class="pedidos-lista__cabecalho">
+      <span class="pedidos-lista__icone" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+      </span>
+      <div class="pedidos-lista__titulo-wrap">
+        <h2 class="pedidos-lista__titulo">Pedidos da roda</h2>
+        <p class="pedidos-lista__subtitulo" id="pedidos-contador">{{ pedidos|length }} pedidos recebidos</p>
+      </div>
+
+      <div class="pedidos-lista__legenda">
+        <span class="pedidos-lista__legenda-item pedidos-lista__legenda-item--pendente">Pendente</span>
+        <span class="pedidos-lista__legenda-item pedidos-lista__legenda-item--aceito">Aceito</span>
+        <span class="pedidos-lista__legenda-item pedidos-lista__legenda-item--rejeitado">Rejeitado</span>
+      </div>
+    </div>
+
+    <div class="pedidos-lista__itens" id="pedidos-itens">
+      {% for pedido in pedidos %}
+        <div class="pedido-item pedido-item--{{ 'aceito' if pedido.status == 'Aprovado' else 'pendente' }}" data-id="{{ pedido.id }}">
+
+          <span class="pedido-item__hora">{{ pedido.data[11:16] }}</span>
+
+          <span class="pedido-item__icone" aria-hidden="true">
+            {% if pedido.status == 'Aprovado' %}
+              <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"></path></svg>
+            {% else %}
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+            {% endif %}
+          </span>
+
+          <div class="pedido-item__corpo">
+            <div class="pedido-item__linha-titulo">
+              <span class="pedido-item__musica">{{ pedido.musica }}</span>
+              <span class="pedido-item__status">{{ 'Aceito' if pedido.status == 'Aprovado' else 'Pendente' }}</span>
+            </div>
+            <p class="pedido-item__meta">
+              <span class="pedido-item__nome">{{ pedido.nome_cliente }}</span>{% if pedido.observacao %} &middot; {{ pedido.observacao }}{% endif %}
+            </p>
+          </div>
+
+          <div class="pedido-item__acoes">
+            {% if pedido.status == 'Aprovado' %}
+              <span class="pedido-item__resultado pedido-item__resultado--aceito">
+                <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"></path></svg>
+                Na fila!
+              </span>
+            {% else %}
+              <button type="button" class="btn-aceitar" data-acao="aceitar">
+                <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"></path></svg>
+                Aceitar
+              </button>
+              <button type="button" class="btn-rejeitar" data-acao="rejeitar">
+                <svg viewBox="0 0 24 24"><path d="M18 6 6 18"></path><path d="M6 6l12 12"></path></svg>
+                Rejeitar
+              </button>
+            {% endif %}
+          </div>
+
+        </div>
+      {% else %}
+        <p class="pedidos-lista__vazio">Nenhum pedido recebido ainda.</p>
+      {% endfor %}
     </div>
 
   </div>
 </div>
 
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{{ url_for('static', filename='js/pedido.js') }}"></script>
 {% endblock %}
