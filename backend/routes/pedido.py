@@ -17,3 +17,13 @@ def pagina_pedido():
 def criar_pedido():
 
     return controller.criar_pedido()
+
+
+@pedido_bp.post("/<id_pedido>/delete")
+def excluir_pedido(id_pedido):
+    return controller.excluir_pedido(id_pedido)
+
+
+@pedido_bp.post("/<id_pedido>/aprovar")
+def aprovar_pedido(id_pedido):
+    return controller.aprovar_pedido(id_pedido)

@@ -107,3 +107,37 @@ class PedidoService:
 
         return pedidos
 
+    def excluir_pedido(self, id):
+
+        connection = get_connection()
+
+        cursor = connection.cursor()
+
+        cursor.execute("""
+
+                       DELETE FROM song_request
+                       WHERE id = ?
+
+        """, (id,))
+
+        connection.commit()
+        connection.close()
+
+
+    def aprovar_pedido(self, id):
+
+        connection = get_connection()
+
+        cursor = connection.cursor()
+
+        cursor.execute("""
+
+            UPDATE song_request
+            SET status = 'Aprovado'
+            WHERE id = ?
+
+        """, (id,))
+
+        connection.commit()
+        connection.close()
+

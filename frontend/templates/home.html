@@ -39,4 +39,57 @@
     </div>
   </section>
 
+  <section class="integrantes">
+    <div class="integrantes-cabecalho">
+      <p class="integrantes-eyebrow">Conheça o grupo</p>
+      <h2 class="integrantes-titulo">Integrantes</h2>
+    </div>
+
+    <div class="integrantes-grade">
+      <div class="integrante-card">
+        <img src="{{ url_for('static', filename='images/caio1.jpeg') }}" alt="Caio" class="integrante-foto">
+        <div class="integrante-info">
+          <h3 class="integrante-nome">Caio</h3>
+          <p class="integrante-funcao">Percussionista</p>
+        </div>
+      </div>
+
+      <div class="integrante-card">
+        <img src="{{ url_for('static', filename='images/caio2.jpeg') }}" alt="Hiro" class="integrante-foto">
+        <div class="integrante-info">
+          <h3 class="integrante-nome">Hiro</h3>
+          <p class="integrante-funcao">Banjista</p>
+        </div>
+      </div>
+
+      <div class="integrante-card">
+        <img src="{{ url_for('static', filename='images/caio3.jpeg') }}" alt="Rodrigo" class="integrante-foto">
+        <div class="integrante-info">
+          <h3 class="integrante-nome">Rodrigo</h3>
+          <p class="integrante-funcao">Cavaquinista</p>
+        </div>
+      </div>
+
+      <div class="integrante-card">
+        <img src="{{ url_for('static', filename='images/sauma.jpeg') }}" alt="Sauma" class="integrante-foto">
+        <div class="integrante-info">
+          <h3 class="integrante-nome">Sauma</h3>
+          <p class="integrante-funcao">Percussionista</p>
+        </div>
+      </div>
+
+      <div class="integrante-card">
+        <img src="{{ url_for('static', filename='images/caio4.jpeg') }}" alt="Xiloba" class="integrante-foto">
+        <div class="integrante-info">
+          <h3 class="integrante-nome">Xiloba</h3>
+          <p class="integrante-funcao">Vocalista</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{{ url_for('static', filename='js/integrantes.js') }}"></script>
 {% endblock %}
