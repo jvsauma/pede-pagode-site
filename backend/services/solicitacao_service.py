@@ -29,7 +29,7 @@ class SolicitacaoService:
 
         cursor.execute("""
 
-            INSERT INTO access_request(
+            INSERT INTO membership_requests(
                 name,
                 email,
                 password,
@@ -62,7 +62,7 @@ class SolicitacaoService:
 
         cursor.execute("""
 
-            SELECT 1 FROM access_request
+            SELECT 1 FROM membership_requests
             WHERE email = ? AND status = 'PENDING'
 
         """, (email,))
@@ -82,7 +82,7 @@ class SolicitacaoService:
         cursor.execute("""
 
             SELECT *
-            FROM access_request
+            FROM membership_requests
             ORDER BY requested_at ASC
 
         """)
@@ -118,7 +118,7 @@ class SolicitacaoService:
 
         cursor.execute("""
 
-            SELECT * FROM access_request
+            SELECT * FROM membership_requests
             WHERE id = ? AND status = 'PENDING'
 
         """, (id,))
@@ -140,7 +140,7 @@ class SolicitacaoService:
 
         cursor.execute("""
 
-            UPDATE access_request
+            UPDATE membership_requests
             SET status = 'APPROVED',
                 reviewed_by = ?,
                 reviewed_at = ?,
@@ -161,7 +161,7 @@ class SolicitacaoService:
 
         cursor.execute("""
 
-            UPDATE access_request
+            UPDATE membership_requests
             SET status = 'REJECTED',
                 reviewed_by = ?,
                 reviewed_at = ?

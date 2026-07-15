@@ -25,6 +25,15 @@
                 <ul class="nav-links">
                     <li><a href="{{ url_for('pedido.pagina_pedido') }}">Pedir Pagode</a></li>
                     <li><a href="{{ url_for('repertorio.listar_repertorio') }}">Ver Setlist</a></li>
+                    {% if session.user_id %}
+                        <li>
+                            <form action="{{ url_for('auth.logout') }}" method="POST" class="nav-logout">
+                                <button type="submit" class="nav-link-btn">Sair</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li><a href="{{ url_for('auth.exibir_login') }}">Entrar</a></li>
+                    {% endif %}
                 </ul>
             </nav>
 

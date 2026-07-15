@@ -34,4 +34,11 @@ class AuthController:
 
         session.permanent = True
 
-        return redirect(url_for("area_membro.pagina_inicial"))
+        return redirect(url_for("solicitacao.listar_solicitacoes"))
+
+
+    def logout(self):
+
+        session.clear()
+
+        return redirect(url_for("home.index"))

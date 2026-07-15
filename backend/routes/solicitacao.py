@@ -8,13 +8,19 @@ solicitacao_bp = Blueprint("solicitacao", __name__, url_prefix="/solicitacao")
 controller = SolicitacaoController()
 
 
+@solicitacao_bp.get("/")
+def exibir_solicitacao():
+
+    return controller.exibir_pagina()
+
+
 @solicitacao_bp.post("/")
 def criar_solicitacao():
 
     return controller.criar_solicitacao()
 
 
-@solicitacao_bp.get("/")
+@solicitacao_bp.get("/admin")
 @login_required
 def listar_solicitacoes():
 

@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}Solicitações — Grupo Pede Pagode{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/solicitacao_admin.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="admin-hero">
+  <div class="admin-hero__inner">
+    <span class="tag-pill">Painel administrativo</span>
+    <h1 class="admin-titulo">
+      Solicitações de <span class="admin-titulo__grad">acesso</span>
+    </h1>
+    <p class="admin-subtitulo">Revise quem quer entrar na roda.</p>
+  </div>
+</section>
+
+<div class="admin-corpo">
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for categoria, msg in messages %}
+        <div class="alert-{{ 'sucesso' if categoria == 'sucesso' else 'erro' }}">{{ msg }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <div class="solicitacoes-lista">
+
+    <div class="solicitacoes-lista__cabecalho">
+      <span class="solicitacoes-lista__icone" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="4"></circle><path d="M2 21a7 7 0 0 1 14 0"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path><path d="M22 21a7 7 0 0 0-5-6.71"></path></svg>
+      </span>
+      <div class="solicitacoes-lista__titulo-wrap">
+        <h2 class="solicitacoes-lista__titulo">Pedidos de acesso</h2>
+        <p class="solicitacoes-lista__subtitulo">{{ solicitacoes|length }} solicitações no total</p>
+      </div>
+
+      <div class="solicitacoes-lista__legenda">
+        <span class="solicitacoes-lista__legenda-item solicitacoes-lista__legenda-item--pendente">Pendente</span>
+        <span class="solicitacoes-lista__legenda-item solicitacoes-lista__legenda-item--aprovado">Aprovado</span>
+        <span class="solicitacoes-lista__legenda-item solicitacoes-lista__legenda-item--rejeitado">Rejeitado</span>
+      </div>
+    </div>
+
+    <div class="solicitacoes-lista__itens">
+      {% for solicitacao in solicitacoes %}
+        <div class="solicitacao-item{% if solicitacao.status == 'APPROVED' %} solicitacao-item--approved{% elif solicitacao.status == 'REJECTED' %} solicitacao-item--rejected{% endif %}">
+
+          <span class="solicitacao-item__icone" aria-hidden="true">
+            {% if solicitacao.status == 'APPROVED' %}
+              <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"></path></svg>
+            {% elif solicitacao.status == 'REJECTED' %}
+              <svg viewBox="0 0 24 24"><path d="M18 6 6 18"></path><path d="M6 6l12 12"></path></svg>
+            {% else %}
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+            {% endif %}
+          </span>
+
+          <div class="solicitacao-item__corpo">
+            <div class="solicitacao-item__linha-titulo">
+              <span class="solicitacao-item__nome">{{ solicitacao.nome }}</span>
+              <span class="solicitacao-item__status" data-status="{{ solicitacao.status }}">
+                {% if solicitacao.status == 'APPROVED' %}Aprovado{% elif solicitacao.status == 'REJECTED' %}Rejeitado{% else %}Pendente{% endif %}
+              </span>
+            </div>
+            <p class="solicitacao-item__meta">{{ solicitacao.email }} &middot; {{ solicitacao.data_solicitacao }}</p>
+          </div>
+
+          <div class="solicitacao-item__acoes">
+            {% if solicitacao.status == 'PENDING' %}
+              <form action="{{ url_for('solicitacao.aprovar_solicitacao', id_solicitacao=solicitacao.id) }}" method="POST">
+                <button type="submit" class="btn-aceitar">
+                  <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"></path></svg>
+                  Aprovar
+                </button>
+              </form>
+              <form action="{{ url_for('solicitacao.recusar_solicitacao', id_solicitacao=solicitacao.id) }}" method="POST">
+                <button type="submit" class="btn-rejeitar">
+                  <svg viewBox="0 0 24 24"><path d="M18 6 6 18"></path><path d="M6 6l12 12"></path></svg>
+                  Recusar
+                </button>
+              </form>
+            {% elif solicitacao.status == 'APPROVED' %}
+              <span class="solicitacao-item__resultado solicitacao-item__resultado--approved">
+                <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"></path></svg>
+                Na roda!
+              </span>
+            {% else %}
+              <span class="solicitacao-item__resultado solicitacao-item__resultado--rejected">
+                <svg viewBox="0 0 24 24"><path d="M18 6 6 18"></path><path d="M6 6l12 12"></path></svg>
+                Recusado
+              </span>
+            {% endif %}
+          </div>
+
+        </div>
+      {% else %}
+        <p class="solicitacoes-lista__vazio">Nenhuma solicitação recebida ainda.</p>
+      {% endfor %}
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}

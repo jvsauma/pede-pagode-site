@@ -17,3 +17,9 @@ def exibir_login():
 def login():
 
     return controller.login()
+
+
+@auth_bp.post("/logout")
+def logout():
+
+    return controller.logout()

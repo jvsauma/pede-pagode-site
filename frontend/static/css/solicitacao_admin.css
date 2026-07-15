@@ -1,0 +1,383 @@
+/* ============================================================
+   ADMIN — estilos da página "Solicitações de acesso"
+   ============================================================ */
+
+/* ---------- cabeçalho ---------- */
+
+.admin-hero {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--surf-header);
+  background-image: var(--grad-header-bg);
+  padding: var(--esp-14) 0 var(--esp-10);
+}
+
+.admin-hero__inner {
+  position: relative;
+  z-index: var(--z-base);
+  max-width: var(--largura-max);
+  margin: 0 auto;
+  padding: 0 var(--esp-8);
+}
+
+.admin-titulo {
+  margin: var(--esp-4) 0 0;
+  font-family: var(--font-display);
+  font-size: var(--size-page);
+  line-height: var(--leading-display);
+  text-transform: uppercase;
+  color: var(--txt-claro);
+}
+
+.admin-titulo__grad {
+  background-image: var(--grad-texto);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.admin-subtitulo {
+  margin: var(--esp-4) 0 0;
+  max-width: var(--largura-form);
+  font-family: var(--font-corpo);
+  font-size: var(--size-lg);
+  color: var(--txt-mudo-claro);
+}
+
+/* ---------- corpo ---------- */
+
+.admin-corpo {
+  max-width: var(--largura-max);
+  margin: 0 auto;
+  padding: var(--esp-10) var(--esp-8);
+}
+
+.alert-erro {
+  margin-bottom: var(--esp-5);
+  padding: var(--esp-3) var(--esp-4);
+  border-radius: var(--raio-md);
+  background-color: var(--acao-dislike-bg);
+  color: var(--acao-dislike-txt);
+  font-family: var(--font-corpo);
+  font-size: var(--size-base);
+  font-weight: var(--peso-medio);
+}
+
+.alert-sucesso {
+  margin-bottom: var(--esp-5);
+  padding: var(--esp-3) var(--esp-4);
+  border-radius: var(--raio-md);
+  background-color: var(--acao-like-bg);
+  color: var(--acao-like-txt);
+  font-family: var(--font-corpo);
+  font-size: var(--size-base);
+  font-weight: var(--peso-medio);
+}
+
+/* ---------- listagem ---------- */
+
+.solicitacoes-lista__cabecalho {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-4);
+  margin-bottom: var(--esp-6);
+  flex-wrap: wrap;
+}
+
+.solicitacoes-lista__icone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  border-radius: var(--raio-circulo);
+  background-color: var(--cor-marrom);
+  color: var(--cor-ouro);
+}
+
+.solicitacoes-lista__icone svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.solicitacoes-lista__titulo-wrap {
+  flex: 1;
+  min-width: 0;
+}
+
+.solicitacoes-lista__titulo {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--size-2xl);
+  color: var(--txt-primario);
+  text-transform: uppercase;
+}
+
+.solicitacoes-lista__subtitulo {
+  margin: var(--esp-1) 0 0;
+  font-family: var(--font-corpo);
+  font-size: var(--size-base);
+  color: var(--txt-mudo);
+}
+
+.solicitacoes-lista__legenda {
+  display: flex;
+  gap: var(--esp-5);
+  flex-wrap: wrap;
+}
+
+.solicitacoes-lista__legenda-item {
+  position: relative;
+  padding-left: var(--esp-4);
+  font-family: var(--font-corpo);
+  font-size: var(--size-sm);
+  font-weight: var(--peso-semi);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--txt-mudo);
+}
+
+.solicitacoes-lista__legenda-item::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--raio-circulo);
+  transform: translateY(-50%);
+}
+
+.solicitacoes-lista__legenda-item--pendente::before { background-color: var(--status-pendente-txt); }
+.solicitacoes-lista__legenda-item--aprovado::before { background-color: var(--status-aprovado-txt); }
+.solicitacoes-lista__legenda-item--rejeitado::before { background-color: var(--status-rejeitado-txt); }
+
+.solicitacoes-lista__itens {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-4);
+}
+
+.solicitacoes-lista__vazio {
+  padding: var(--esp-8) 0;
+  text-align: center;
+  font-family: var(--font-corpo);
+  color: var(--txt-mudo);
+}
+
+/* ---------- item ---------- */
+
+.solicitacao-item {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-4);
+  padding: var(--esp-4) var(--esp-5);
+  background-color: var(--surf-card-hover);
+  border: var(--borda-espessura-sm) solid var(--borda-cor-forte);
+  border-left: 4px solid var(--status-pendente-txt);
+  border-radius: var(--raio-lg);
+  box-shadow: var(--sombra-sm);
+  transition: var(--trans-normal);
+}
+
+.solicitacao-item--approved {
+  border-color: transparent;
+  border-left-color: var(--status-aprovado-txt);
+  background-color: var(--status-aprovado-bg);
+}
+
+.solicitacao-item--rejected {
+  border-color: transparent;
+  border-left-color: var(--status-rejeitado-txt);
+  background-color: var(--status-rejeitado-bg);
+}
+
+.solicitacao-item__icone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: var(--raio-circulo);
+  background-color: var(--status-pendente-bg);
+  color: var(--status-pendente-txt);
+}
+
+.solicitacao-item--approved .solicitacao-item__icone {
+  background-color: var(--acao-like-bg-hover);
+  color: var(--status-aprovado-txt);
+}
+
+.solicitacao-item--rejected .solicitacao-item__icone {
+  background-color: var(--acao-dislike-bg-hover);
+  color: var(--status-rejeitado-txt);
+}
+
+.solicitacao-item__icone svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.solicitacao-item__corpo {
+  flex: 1;
+  min-width: 0;
+}
+
+.solicitacao-item__linha-titulo {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-3);
+  flex-wrap: wrap;
+}
+
+.solicitacao-item__nome {
+  font-family: var(--font-corpo);
+  font-weight: var(--peso-negrito);
+  font-size: var(--size-md);
+  color: var(--txt-primario);
+}
+
+.solicitacao-item__status {
+  display: inline-block;
+  padding: var(--esp-1) var(--esp-3);
+  border-radius: var(--raio-pill);
+  font-family: var(--font-corpo);
+  font-size: var(--size-xs);
+  font-weight: var(--peso-negrito);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  background-color: var(--status-pendente-bg);
+  color: var(--status-pendente-txt);
+}
+
+.solicitacao-item__status[data-status="APPROVED"] {
+  background-color: var(--status-aprovado-bg);
+  color: var(--status-aprovado-txt);
+}
+
+.solicitacao-item__status[data-status="REJECTED"] {
+  background-color: var(--status-rejeitado-bg);
+  color: var(--status-rejeitado-txt);
+}
+
+.solicitacao-item__meta {
+  margin: var(--esp-1) 0 0;
+  font-family: var(--font-corpo);
+  font-size: var(--size-base);
+  color: var(--txt-mudo);
+}
+
+.solicitacao-item__acoes {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-2);
+  flex-shrink: 0;
+}
+
+.solicitacao-item__acoes form {
+  margin: 0;
+}
+
+.btn-aceitar,
+.btn-rejeitar {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-1);
+  padding: var(--esp-2) var(--esp-4);
+  border: var(--borda-espessura-sm) solid transparent;
+  border-radius: var(--raio-pill);
+  font-family: var(--font-corpo);
+  font-size: var(--size-sm);
+  font-weight: var(--peso-semi);
+  cursor: pointer;
+  transition: var(--trans-rapida);
+}
+
+.btn-aceitar svg,
+.btn-rejeitar svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.btn-aceitar {
+  background-color: var(--acao-like-bg);
+  color: var(--acao-like-txt);
+}
+
+.btn-aceitar:hover {
+  background-color: var(--acao-like-bg-hover);
+}
+
+.btn-rejeitar {
+  background-color: var(--acao-dislike-bg);
+  color: var(--acao-dislike-txt);
+}
+
+.btn-rejeitar:hover {
+  background-color: var(--acao-dislike-bg-hover);
+}
+
+.solicitacao-item__resultado {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-1);
+  font-family: var(--font-corpo);
+  font-size: var(--size-sm);
+  font-weight: var(--peso-semi);
+}
+
+.solicitacao-item__resultado--approved {
+  color: var(--status-aprovado-txt);
+}
+
+.solicitacao-item__resultado--rejected {
+  color: var(--status-rejeitado-txt);
+}
+
+/* ---------- responsivo ---------- */
+
+@media (max-width: 600px) {
+  .admin-hero {
+    padding: var(--esp-10) 0 var(--esp-8);
+  }
+
+  .admin-hero__inner {
+    padding: 0 var(--esp-4);
+  }
+
+  .admin-corpo {
+    padding: var(--esp-8) var(--esp-4);
+  }
+
+  .solicitacoes-lista__legenda {
+    flex-basis: 100%;
+    gap: var(--esp-3);
+  }
+
+  .solicitacao-item {
+    flex-wrap: wrap;
+  }
+
+  .solicitacao-item__acoes {
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: var(--esp-2);
+  }
+}

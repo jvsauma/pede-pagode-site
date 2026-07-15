@@ -1,4 +1,4 @@
-from flask import request, jsonify, g
+from flask import request, g, render_template, redirect, url_for, flash
 
 from backend.services.solicitacao_service import SolicitacaoService
 
@@ -8,6 +8,11 @@ class SolicitacaoController:
     def __init__(self):
 
         self.service = SolicitacaoService()
+
+
+    def exibir_pagina(self):
+
+        return render_template("solicitacao.html")
 
 
     def criar_solicitacao(self):
@@ -22,28 +27,19 @@ class SolicitacaoController:
             self.service.criar_solicitacao(nome, email, senha)
 
         except ValueError as erro:
-            return jsonify(ok=False, erro=str(erro)), 400
+            flash(str(erro), "erro")
+            return redirect(url_for("solicitacao.exibir_solicitacao"))
 
-        return jsonify(ok=True), 201
+        flash("Solicitação enviada com sucesso", "sucesso")
+
+        return redirect(url_for("solicitacao.exibir_solicitacao"))
 
 
     def listar_solicitacoes(self):
 
         solicitacoes = self.service.listar_solicitacoes()
 
-        return jsonify([
-            {
-                "id": solicitacao.id,
-                "nome": solicitacao.nome,
-                "email": solicitacao.email,
-                "status": solicitacao.status,
-                "data_solicitacao": solicitacao.data_solicitacao,
-                "revisado_por": solicitacao.revisado_por,
-                "data_revisao": solicitacao.data_revisao,
-                "usuario_id": solicitacao.usuario_id
-            }
-            for solicitacao in solicitacoes
-        ])
+        return render_template("solicitacao_admin.html", solicitacoes=solicitacoes)
 
 
     def aprovar_solicitacao(self, id):
@@ -54,9 +50,12 @@ class SolicitacaoController:
             self.service.aprovar_solicitacao(id, revisor_id)
 
         except ValueError as erro:
-            return jsonify(ok=False, erro=str(erro)), 400
+            flash(str(erro), "erro")
+            return redirect(url_for("solicitacao.listar_solicitacoes"))
 
-        return jsonify(ok=True)
+        flash("Solicitação aprovada com sucesso", "sucesso")
+
+        return redirect(url_for("solicitacao.listar_solicitacoes"))
 
 
     def recusar_solicitacao(self, id):
@@ -65,4 +64,6 @@ class SolicitacaoController:
 
         self.service.recusar_solicitacao(id, revisor_id)
 
-        return jsonify(ok=True)
+        flash("Solicitação recusada", "sucesso")
+
+        return redirect(url_for("solicitacao.listar_solicitacoes"))
