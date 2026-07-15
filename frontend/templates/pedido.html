@@ -133,6 +133,28 @@
     </div>
 
   </div>
+
+  {% if pedidos|length > 0 %}
+    <section class="pedidos-lista">
+      <h2 class="pedidos-lista__titulo">Pedidos da roda</h2>
+
+      <div class="pedidos-lista__grid">
+        {% for pedido in pedidos %}
+          <article class="pedido-item">
+            <div class="pedido-item__topo">
+              <h3 class="pedido-item__musica">{{ pedido.musica }}</h3>
+              <span class="status-badge" data-status="{{ pedido.status }}">{{ pedido.status }}</span>
+            </div>
+            <p class="pedido-item__cliente">Pedido de {{ pedido.nome_cliente }}</p>
+            {% if pedido.observacao %}
+              <p class="pedido-item__obs">"{{ pedido.observacao }}"</p>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
 </div>
 
 {% endblock %}

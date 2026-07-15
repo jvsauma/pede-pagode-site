@@ -11,6 +11,8 @@ CREATE TABLE IF NOT EXISTS users(
     password TEXT NOT NULL
 );
 
+CREATE UNIQUE INDEX IF NOT EXISTS idx_users_email ON users(email);
+
 CREATE TABLE IF NOT EXISTS songs (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
@@ -28,6 +30,22 @@ CREATE TABLE IF NOT EXISTS song_request (
     status TEXT DEFAULT 'Pendente',
     created_at TEXT NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS membership_requests (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    password TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'PENDING',
+    requested_at TEXT NOT NULL,
+    reviewed_by INTEGER,
+    reviewed_at TEXT,
+    user_id INTEGER
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS idx_membership_requests_email
+    ON membership_requests(email)
+    WHERE status != 'REJECTED';
 
 
 """

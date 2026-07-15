@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for msg in messages %}
+      <div class="alert-erro">{{ msg }}</div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<form action="{{ url_for('auth.login') }}" method="POST">
+
+  <div class="campo">
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" required>
+  </div>
+
+  <div class="campo">
+    <label for="senha">Senha</label>
+    <input type="password" name="senha" id="senha" required>
+  </div>
+
+  <button type="submit">Entrar</button>
+
+</form>
+
+{% endblock %}
