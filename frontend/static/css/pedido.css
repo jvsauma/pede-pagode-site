@@ -792,10 +792,89 @@
 
 /* ---------- responsivo ---------- */
 
+/* ---------- listagem de pedidos ---------- */
+
+.pedidos-lista {
+  margin-top: var(--esp-10);
+}
+
+.pedidos-lista__titulo {
+  margin: 0 0 var(--esp-5);
+  font-family: var(--font-display);
+  font-size: var(--size-2xl);
+  color: var(--txt-primario);
+}
+
+.pedidos-lista__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--esp-4);
+}
+
+.pedido-item {
+  background-color: var(--surf-card);
+  border-radius: var(--raio-lg);
+  padding: var(--esp-5);
+  box-shadow: var(--sombra-sm);
+}
+
+.pedido-item__topo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--esp-2);
+}
+
+.pedido-item__musica {
+  margin: 0;
+  font-family: var(--font-corpo);
+  font-weight: var(--peso-extra);
+  font-size: var(--size-md);
+  line-height: var(--leading-apertado);
+  color: var(--txt-primario);
+}
+
+.status-badge {
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-family: var(--font-corpo);
+  font-size: var(--size-xs);
+  font-weight: var(--peso-semi);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  padding: var(--esp-1) var(--esp-2);
+  border-radius: var(--raio-pill);
+}
+
+.status-badge[data-status="Pendente"]  { background-color: var(--status-pendente-bg);  color: var(--status-pendente-txt); }
+.status-badge[data-status="Aprovado"]  { background-color: var(--status-aprovado-bg);  color: var(--status-aprovado-txt); }
+.status-badge[data-status="Rejeitado"] { background-color: var(--status-rejeitado-bg); color: var(--status-rejeitado-txt); }
+
+.pedido-item__cliente {
+  margin: var(--esp-2) 0 0;
+  font-family: var(--font-corpo);
+  font-size: var(--size-base);
+  font-weight: var(--peso-medio);
+  color: var(--txt-acento);
+}
+
+.pedido-item__obs {
+  margin: var(--esp-2) 0 0;
+  font-family: var(--font-corpo);
+  font-style: italic;
+  font-size: var(--size-base);
+  line-height: var(--leading-normal);
+  color: var(--txt-mudo);
+}
+
 @media (max-width: 900px) {
   .pedido-grid {
     grid-template-columns: 1fr;
     gap: var(--esp-8);
+  }
+
+  .pedidos-lista__grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -833,5 +912,9 @@
     width: 100%;
     justify-content: flex-end;
     margin-top: var(--esp-2);
+  }
+
+  .pedidos-lista__grid {
+    grid-template-columns: 1fr;
   }
 }

@@ -1,4 +1,4 @@
-from flask import request, jsonify
+from flask import request, jsonify, g
 
 from backend.services.solicitacao_service import SolicitacaoService
 
@@ -48,7 +48,7 @@ class SolicitacaoController:
 
     def aprovar_solicitacao(self, id):
 
-        revisor_id = request.form["revisor_id"]
+        revisor_id = g.usuario.id
 
         try:
             self.service.aprovar_solicitacao(id, revisor_id)
@@ -61,7 +61,7 @@ class SolicitacaoController:
 
     def recusar_solicitacao(self, id):
 
-        revisor_id = request.form["revisor_id"]
+        revisor_id = g.usuario.id
 
         self.service.recusar_solicitacao(id, revisor_id)
 
