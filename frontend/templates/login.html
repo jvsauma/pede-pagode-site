@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Entrar — Grupo Pede Pagode{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="auth-hero">
+  <div class="auth-hero__inner">
+    <span class="tag-pill">Área restrita</span>
+    <h1 class="auth-titulo">
+      Bem-vindo de <span class="auth-titulo__grad">volta</span>
+    </h1>
+    <p class="auth-subtitulo">Entre com sua conta para acessar a área do integrante.</p>
+  </div>
+</section>
+
+<div class="auth-corpo">
+  <div class="auth-card">
+
+    <div class="auth-card__cabecalho">
+      <span class="auth-card__icone" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><path d="M10 17l5-5-5-5"></path><path d="M15 12H3"></path></svg>
+      </span>
+      <div>
+        <h2 class="auth-card__titulo">Entrar</h2>
+        <p class="auth-card__subtitulo">Use o e-mail e a senha aprovados pelo grupo</p>
+      </div>
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for msg in messages %}
+          <div class="alert-erro">{{ msg }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('auth.login') }}" method="POST">
+
+      <div class="campo">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" required placeholder="seuemail@exemplo.com">
+      </div>
+
+      <div class="campo">
+        <label for="senha">Senha</label>
+        <input type="password" name="senha" id="senha" required placeholder="Sua senha">
+      </div>
+
+      <button type="submit" class="btn-enviar">
+        Entrar
+        <svg viewBox="0 0 24 24"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+      </button>
+
+    </form>
+
+    <p class="auth-card__rodape">Não está cadastrado? <a href="{{ url_for('solicitacao.exibir_solicitacao') }}">Solicite seu acesso</a></p>
+
+  </div>
+</div>
+
+{% endblock %}

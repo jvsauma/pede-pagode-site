@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Solicitar acesso — Grupo Pede Pagode{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="auth-hero">
+  <div class="auth-hero__inner">
+    <span class="tag-pill">Solicitação de acesso</span>
+    <h1 class="auth-titulo">
+      Faça parte da <span class="auth-titulo__grad">roda</span>
+    </h1>
+    <p class="auth-subtitulo">Preencha seus dados. Um integrante vai revisar seu pedido em breve.</p>
+  </div>
+</section>
+
+<div class="auth-corpo">
+  <div class="auth-card">
+
+    <div class="auth-card__cabecalho">
+      <span class="auth-card__icone" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"></circle><path d="M5.5 21a6.5 6.5 0 0 1 13 0"></path><path d="M19 8v6"></path><path d="M22 11h-6"></path></svg>
+      </span>
+      <div>
+        <h2 class="auth-card__titulo">Solicitar acesso</h2>
+        <p class="auth-card__subtitulo">Seus dados ficam pendentes até a aprovação</p>
+      </div>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for categoria, msg in messages %}
+          <div class="alert-{{ 'sucesso' if categoria == 'sucesso' else 'erro' }}">{{ msg }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('solicitacao.criar_solicitacao') }}" method="POST">
+
+      <div class="campo">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome" required placeholder="Como podemos te chamar?">
+      </div>
+
+      <div class="campo">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" required placeholder="seuemail@exemplo.com">
+      </div>
+
+      <div class="campo">
+        <label for="senha">Senha</label>
+        <input type="password" name="senha" id="senha" required placeholder="Crie uma senha">
+      </div>
+
+      <button type="submit" class="btn-enviar">
+        Solicitar acesso
+        <svg viewBox="0 0 24 24"><path d="M22 2 11 13"></path><path d="M22 2 15 22 11 13 2 9 22 2z"></path></svg>
+      </button>
+
+    </form>
+
+    <p class="auth-card__rodape">Já tem uma conta? <a href="{{ url_for('auth.exibir_login') }}">Entrar</a></p>
+
+  </div>
+</div>
+
+{% endblock %}

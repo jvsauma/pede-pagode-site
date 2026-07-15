@@ -163,6 +163,14 @@
   --acao-dislike-bg-hover: rgba(225, 93, 42, 0.28);
   --acao-dislike-txt:      var(--genero-samba-txt);
 
+  /* ── STATUS DE PEDIDO ── */
+  --status-pendente-bg:   var(--genero-pagode-bg);
+  --status-pendente-txt:  var(--genero-pagode-txt);
+  --status-aprovado-bg:   var(--acao-like-bg);
+  --status-aprovado-txt:  var(--acao-like-txt);
+  --status-rejeitado-bg:  var(--acao-dislike-bg);
+  --status-rejeitado-txt: var(--acao-dislike-txt);
+
   /* ── BREAKPOINTS (uso via @media, listado como referência) ── */
   /* --bp-mobile: 600px  */
   /* --bp-tablet: 900px  */
@@ -257,6 +265,27 @@ a{
 }
 
 .nav-links li a:hover {
+    color: var(--txt-destaque);
+}
+
+.nav-logout {
+    margin: 0;
+}
+
+.nav-link-btn {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--txt-claro);
+    font-family: var(--font-corpo);
+    font-size: var(--size-md);
+    font-weight: var(--peso-semi);
+    cursor: pointer;
+    transition: var(--trans-rapida);
+}
+
+.nav-link-btn:hover {
     color: var(--txt-destaque);
 }
 
