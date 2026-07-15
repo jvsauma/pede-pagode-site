@@ -29,6 +29,20 @@ CREATE TABLE IF NOT EXISTS song_request (
     created_at TEXT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS access_request (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    password TEXT NOT NULL,
+    status TEXT DEFAULT 'PENDING',
+    requested_at TEXT NOT NULL,
+    reviewed_by INTEGER,
+    reviewed_at TEXT,
+    user_id INTEGER,
+    FOREIGN KEY (reviewed_by) REFERENCES users(id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
 
 """
 
